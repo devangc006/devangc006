@@ -2,5 +2,10 @@
   "name": "devangc006-profile-assets",
   "private": true,
   "type": "module",
-  "description": "Generates the animated GitHub contribution terminal SVG"
+  "description": "Generates the live GitHub profile status SVG",
+  "scripts": {
+    "fetch:profile": "node scripts/profile/fetch-profile-stats.js",
+    "generate:status": "node scripts/profile/generate-profile-stats-svg.js",
+    "update:profile": "npm run fetch:profile && npm run generate:status"
+  }
 }

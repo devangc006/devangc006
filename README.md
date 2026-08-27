@@ -1,27 +1,23 @@
 <p align="center">
-  <img src="./header.svg" width="800" alt="Header">
+  <img src="./assets/profile/header.svg" width="800" alt="Header">
 </p>
 
 <p align="center">
-  <img src="./about.svg" width="800" alt="About">
+  <img src="./assets/profile/about.svg" width="800" alt="About">
 </p>
 
 <p align="center">
-  <img src="./skills.svg" width="800" alt="Skills">
+  <img src="./assets/profile/skills.svg" width="800" alt="Skills">
 </p>
 
 <p align="center">
-  <img src="./projects.svg" width="800" alt="Projects">
+  <img src="./assets/profile/projects.svg" width="800" alt="Projects">
 </p>
 
 <p align="center">
-  <img src="./gh-stats.svg" width="800" alt="GitHub statistics">
+  <img src="./assets/generated/gh-status.svg" width="800" alt="Live GitHub profile statistics, contributions, averages, and top languages">
 </p>
 
 <p align="center">
-  <img src="./assets/contribution-terminal.svg" width="800" alt="Contribution activity">
-</p>
-
-<p align="center">
-  <img src="./footer.svg" width="800" alt="Footer">
+  <img src="./assets/profile/footer.svg" width="800" alt="Footer">
 </p>

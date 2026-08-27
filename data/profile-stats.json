@@ -1,0 +1,30 @@
+{
+  "username": "devangc006",
+  "repositories": 5,
+  "followers": 0,
+  "following": 0,
+  "contributions": 30,
+  "languages": [
+    {
+      "name": "Jupyter Notebook",
+      "color": "#DA5B0B",
+      "percentage": 64.3
+    },
+    {
+      "name": "Python",
+      "color": "#3572A5",
+      "percentage": 16
+    },
+    {
+      "name": "HTML",
+      "color": "#e34c26",
+      "percentage": 8.4
+    }
+  ],
+  "averages": {
+    "perDay": 0.08,
+    "perWeek": 0.58
+  },
+  "weeks": [],
+  "generatedAt": "2026-08-27T15:48:30.598+05:30"
+}
