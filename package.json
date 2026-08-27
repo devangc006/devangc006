@@ -1,0 +1,6 @@
+{
+  "name": "devangc006-profile-assets",
+  "private": true,
+  "type": "module",
+  "description": "Generates the animated GitHub contribution terminal SVG"
+}
