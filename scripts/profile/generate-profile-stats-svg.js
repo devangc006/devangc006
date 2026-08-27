@@ -51,7 +51,7 @@ const svg = `<?xml version="1.0" encoding="UTF-8"?>
     .cell { fill:#161B22; } .level-1 { fill:#064E3B; } .level-2 { fill:#059669; } .level-3 { fill:#00D084; } .level-4 { fill:#00FF9C; }
     .line { opacity:1; animation: reveal 12s ease-in-out infinite; }
     .cursor { animation: blink 1s steps(1,end) infinite; }
-    @keyframes reveal { 0%,4% { opacity:1; transform:translateY(4px) } 10%,88% { opacity:1; transform:translateY(0) } 94%,100% { opacity:1; transform:translateY(4px) } }
+    @keyframes reveal { 0%,4% { opacity:.35; transform:translateY(4px) } 10%,88% { opacity:1; transform:translateY(0) } 94%,100% { opacity:.35; transform:translateY(4px) } }
     @keyframes blink { 0%,49% { opacity:1 } 50%,100% { opacity:0 } }
     @media (prefers-reduced-motion: reduce) { .line { animation:none; opacity:1; } .cursor { animation:none; } }
   </style>
