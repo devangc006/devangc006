@@ -37,11 +37,12 @@ const statLines = stats.map(([label, value], index) =>
 const languageLines = data.languages.map((language, index) => {
   const bar = "▮".repeat(Math.max(1, Math.round(language.percentage / 10))) +
     "░".repeat(Math.max(0, 10 - Math.round(language.percentage / 10)));
-  return `<g class="line" style="animation-delay:${(0.6 + index * 0.12).toFixed(2)}s"><text x="60" y="${230 + index * 22}" fill="${esc(language.color)}">${bar}</text><text x="220" y="${230 + index * 22}" class="primary">${esc(language.name)}</text><text x="390" y="${230 + index * 22}" class="muted">${esc(language.percentage)}%</text></g>`;
+  const y = 398 + index * 22;
+  return `<g class="line" style="animation-delay:${(0.8 + index * 0.12).toFixed(2)}s"><text x="60" y="${y}" fill="${esc(language.color)}">${bar}</text><text x="220" y="${y}" class="primary">${esc(language.name)}</text><text x="390" y="${y}" class="muted">${esc(language.percentage)}%</text></g>`;
 }).join("");
 
 const svg = `<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="470" viewBox="0 0 800 470" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="510" viewBox="0 0 800 510" role="img" aria-labelledby="title desc">
   <title id="title">Live GitHub profile status for @${esc(data.username)}</title>
   <desc id="desc">${esc(data.repositories)} public repositories, ${esc(data.followers)} followers, ${esc(data.contributions)} contributions in the last year, and most-used languages.</desc>
   <style>
@@ -53,15 +54,15 @@ const svg = `<?xml version="1.0" encoding="UTF-8"?>
     @keyframes blink { 0%,49% { opacity:1 } 50%,100% { opacity:0 } }
     @media (prefers-reduced-motion: reduce) { .line { animation:none; opacity:1; } .cursor { animation:none; } }
   </style>
-  <rect width="800" height="470" rx="14" class="terminal"/>
+  <rect width="800" height="510" rx="14" class="terminal"/>
   <g opacity=".5"><circle cx="24" cy="24" r="6" fill="#ff5f57"/><circle cx="44" cy="24" r="6" fill="#febc2e"/><circle cx="64" cy="24" r="6" fill="#28c840"/></g>
   <text x="400" y="28" text-anchor="middle" class="muted">~ / github-status.sh</text>
   <g class="line"><text x="40" y="64" class="accent">$</text><text x="60" y="64" class="primary">gh status --user ${esc(data.username)}</text></g>
   ${statLines}
   <g class="line" style="animation-delay:.5s"><text x="40" y="260" class="muted"># contribution activity · last year</text><g transform="translate(40 278)">${cells}</g></g>
   <g class="line" style="animation-delay:.7s"><text x="40" y="370" class="muted"># top languages</text></g>
-  ${languageLines.replaceAll('y="230', 'y="396').replaceAll('y="252', 'y="418').replaceAll('y="274', 'y="440')}
-  <g class="line" style="animation-delay:1.1s"><text x="40" y="462" class="accent">$</text><text x="60" y="462" class="primary">updated ${esc(data.generatedAt.replace("T", " ").replace("Z", " UTC"))}</text><rect class="cursor" x="510" y="455" width="9" height="14" fill="#E6EDF3"/></g>
+  ${languageLines}
+  <g class="line" style="animation-delay:1.3s"><text x="40" y="496" class="accent">$</text><text x="60" y="496" class="primary">updated ${esc(data.generatedAt.replace("T", " ").replace("Z", " UTC"))}</text><rect class="cursor" x="510" y="489" width="9" height="14" fill="#E6EDF3"/></g>
 </svg>
 `;
 
