@@ -22,6 +22,13 @@ const cells = weeks.map((week, column) => week.map((day, row) => {
   const level = levelMap[day?.level] ?? (count ? 1 : 0);
   return `<rect x="${column * 11}" y="${row * 11}" width="8" height="8" rx="2" class="level-${level}"><title>${esc(day?.date || "No date")}: ${count} contributions</title></rect>`;
 }).join("")).join("");
+const languageStart = 9;
+const readyLine = languageStart + data.languages.length;
+const animationRules = Array.from({ length: readyLine + 1 }, (_, index) => {
+  const start = index * 4;
+  const visible = start + 2;
+  return `@keyframes ln${index} { 0%,${start}% { opacity:0 } ${visible}%,88% { opacity:1 } 95%,100% { opacity:0 } }\n    .ln${index} { animation: ln${index} 12s ease-in-out infinite; }`;
+}).join("\n    ");
 
 const stats = [
   ["repos", data.repositories],
@@ -32,13 +39,13 @@ const stats = [
   ["avg/week", data.averages.perWeek],
 ];
 const statLines = stats.map(([label, value], index) =>
-  `<g class="line" style="animation-delay:${(index * 0.12).toFixed(2)}s"><text x="60" y="${108 + index * 23}" class="muted">[</text><text x="68" y="${108 + index * 23}" class="accent">→</text><text x="82" y="${108 + index * 23}" class="muted">]</text><text x="120" y="${108 + index * 23}" class="muted">${label}</text><text x="240" y="${108 + index * 23}" class="primary">${esc(value)}</text></g>`,
+  `<g class="ln${index + 1}"><text x="60" y="${108 + index * 23}" class="muted">[</text><text x="68" y="${108 + index * 23}" class="accent">→</text><text x="82" y="${108 + index * 23}" class="muted">]</text><text x="120" y="${108 + index * 23}" class="muted">${label}</text><text x="240" y="${108 + index * 23}" class="primary">${esc(value)}</text></g>`,
 ).join("");
 const languageLines = data.languages.map((language, index) => {
   const bar = "▮".repeat(Math.max(1, Math.round(language.percentage / 10))) +
     "░".repeat(Math.max(0, 10 - Math.round(language.percentage / 10)));
   const y = 398 + index * 22;
-  return `<g class="line" style="animation-delay:${(0.8 + index * 0.12).toFixed(2)}s"><text x="60" y="${y}" fill="${esc(language.color)}">${bar}</text><text x="220" y="${y}" class="primary">${esc(language.name)}</text><text x="390" y="${y}" class="muted">${esc(language.percentage)}%</text></g>`;
+  return `<g class="ln${languageStart + index}"><text x="60" y="${y}" fill="${esc(language.color)}">${bar}</text><text x="220" y="${y}" class="primary">${esc(language.name)}</text><text x="390" y="${y}" class="muted">${esc(language.percentage)}%</text></g>`;
 }).join("");
 
 const svg = `<?xml version="1.0" encoding="UTF-8"?>
@@ -46,24 +53,22 @@ const svg = `<?xml version="1.0" encoding="UTF-8"?>
   <title id="title">Live GitHub profile status for @${esc(data.username)}</title>
   <desc id="desc">${esc(data.repositories)} public repositories, ${esc(data.followers)} followers, ${esc(data.contributions)} contributions in the last year, and most-used languages.</desc>
   <style>
-    text { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 13px; dominant-baseline: middle; }
+    text { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 14px; dominant-baseline: middle; }
     .terminal { fill:#0a0a0b; } .primary { fill:#E6EDF3; } .muted { fill:#6E7681; } .accent { fill:#00FF9C; }
     .cell { fill:#161B22; } .level-1 { fill:#064E3B; } .level-2 { fill:#059669; } .level-3 { fill:#00D084; } .level-4 { fill:#00FF9C; }
-    .line { opacity:1; animation: reveal 12s ease-in-out infinite; }
-    .cursor { animation: blink 1s steps(1,end) infinite; }
-    @keyframes reveal { 0%,4% { opacity:.35; transform:translateY(4px) } 10%,88% { opacity:1; transform:translateY(0) } 94%,100% { opacity:.35; transform:translateY(4px) } }
+    ${animationRules}
     @keyframes blink { 0%,49% { opacity:1 } 50%,100% { opacity:0 } }
-    @media (prefers-reduced-motion: reduce) { .line { animation:none; opacity:1; } .cursor { animation:none; } }
+    @media (prefers-reduced-motion: reduce) { [class^="ln"] { animation:none; opacity:1; } .cursor { animation:none; } }
   </style>
   <rect width="800" height="510" rx="14" class="terminal"/>
   <g opacity=".5"><circle cx="24" cy="24" r="6" fill="#ff5f57"/><circle cx="44" cy="24" r="6" fill="#febc2e"/><circle cx="64" cy="24" r="6" fill="#28c840"/></g>
   <text x="400" y="28" text-anchor="middle" class="muted">~ / github-status.sh</text>
-  <g class="line"><text x="40" y="64" class="accent">$</text><text x="60" y="64" class="primary">gh status --user ${esc(data.username)}</text></g>
+  <g class="ln0"><text x="40" y="64" class="accent">$</text><text x="60" y="64" class="primary">gh status --user ${esc(data.username)}</text></g>
   ${statLines}
-  <g class="line" style="animation-delay:.5s"><text x="40" y="260" class="muted"># contribution activity · last year</text><g transform="translate(40 278)">${cells}</g></g>
-  <g class="line" style="animation-delay:.7s"><text x="40" y="370" class="muted"># top languages</text></g>
+  <g class="ln7"><text x="40" y="260" class="muted"># contribution activity · last year</text><g transform="translate(40 278)">${cells}</g></g>
+  <g class="ln8"><text x="40" y="370" class="muted"># top languages</text></g>
   ${languageLines}
-  <g class="line" style="animation-delay:1.3s"><text x="40" y="496" class="accent">$</text><text x="60" y="496" class="primary">ready</text><rect class="cursor" x="118" y="489" width="9" height="14" fill="#E6EDF3"/></g>
+  <g class="ln${readyLine}"><text x="40" y="496" class="accent">$</text><text x="60" y="496" class="primary">ready</text><rect class="cursor" x="118" y="489" width="9" height="14" fill="#E6EDF3"/></g>
 </svg>
 `;
 
