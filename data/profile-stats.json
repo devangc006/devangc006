@@ -1949,6 +1949,11 @@
         "date": "2026-11-02",
         "count": 4,
         "level": "SECOND_QUARTILE"
+      },
+      {
+        "date": "2026-11-03",
+        "count": 0,
+        "level": "NONE"
       }
     ]
   ],
@@ -1974,5 +1979,5 @@
       "percentage": 6.8
     }
   ],
-  "generatedAt": "2026-11-02T15:57:55.453Z"
+  "generatedAt": "2026-11-03T00:59:25.589Z"
 }
