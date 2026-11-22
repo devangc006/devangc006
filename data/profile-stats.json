@@ -17,43 +17,6 @@
   "weeks": [
     [
       {
-        "date": "2025-11-16",
-        "count": 0,
-        "level": "NONE"
-      },
-      {
-        "date": "2025-11-17",
-        "count": 0,
-        "level": "NONE"
-      },
-      {
-        "date": "2025-11-18",
-        "count": 0,
-        "level": "NONE"
-      },
-      {
-        "date": "2025-11-19",
-        "count": 0,
-        "level": "NONE"
-      },
-      {
-        "date": "2025-11-20",
-        "count": 0,
-        "level": "NONE"
-      },
-      {
-        "date": "2025-11-21",
-        "count": 0,
-        "level": "NONE"
-      },
-      {
-        "date": "2025-11-22",
-        "count": 0,
-        "level": "NONE"
-      }
-    ],
-    [
-      {
         "date": "2025-11-23",
         "count": 0,
         "level": "NONE"
@@ -1975,6 +1938,13 @@
         "count": 1,
         "level": "FIRST_QUARTILE"
       }
+    ],
+    [
+      {
+        "date": "2026-11-22",
+        "count": 0,
+        "level": "NONE"
+      }
     ]
   ],
   "languages": [
@@ -1999,5 +1969,5 @@
       "percentage": 6.9
     }
   ],
-  "generatedAt": "2026-11-21T19:17:55.993Z"
+  "generatedAt": "2026-11-22T06:52:00.532Z"
 }
