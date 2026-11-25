@@ -1954,6 +1954,11 @@
         "date": "2026-11-24",
         "count": 3,
         "level": "FIRST_QUARTILE"
+      },
+      {
+        "date": "2026-11-25",
+        "count": 0,
+        "level": "NONE"
       }
     ]
   ],
@@ -1979,5 +1984,5 @@
       "percentage": 6.8
     }
   ],
-  "generatedAt": "2026-11-24T22:28:23.553Z"
+  "generatedAt": "2026-11-25T08:38:22.581Z"
 }
